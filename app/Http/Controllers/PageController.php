@@ -6,6 +6,9 @@ class PageController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $apiController = new MovieAPIController();
+        return view('welcome',[
+            'movies' => $apiController->getPopular()
+        ]);
     }
 }
