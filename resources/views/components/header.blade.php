@@ -1,4 +1,4 @@
-<header class="w-full flex justify-between p-2">
+<header class="w-full flex justify-between p-2 px-96">
     <a href="/" class="font-medium text-2xl">Movie database!</a>
     @livewire('search')
     @if(Auth::check())

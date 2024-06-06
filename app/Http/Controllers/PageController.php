@@ -11,4 +11,12 @@ class PageController extends Controller
             'movies' => $apiController->getPopular()
         ]);
     }
+
+    public function show($movieID)
+    {
+        $apiController = new MovieAPIController();
+        return view('movie', [
+            'movie' => $apiController->getMovie($movieID)
+        ]);
+    }
 }

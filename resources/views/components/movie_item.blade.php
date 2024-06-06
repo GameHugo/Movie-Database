@@ -11,5 +11,5 @@
             ...
         @endif
     </p>
-    <a class="p-2 mt-auto mb-1 rounded bg-sky-300 hover:bg-sky-200 transition cursor-pointer">More info</a>
+    <a href="/movie/{{ $movie->id }}" class="p-2 mt-auto mb-1 rounded bg-sky-300 hover:bg-sky-200 transition cursor-pointer">More info</a>
 </div>
