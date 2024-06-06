@@ -5,7 +5,7 @@
 @section('content')
     <div class="flex flex-col items-center mt-16 pb-16">
         <img src="https://image.tmdb.org/t/p/original/{{ $movie->backdrop_path }}"
-             class="w-1/3"
+             class="w-5/6 md:w-1/3"
              alt="{{ $movie->title }} image">
         <h2 class="font-medium text-2xl mt-2">{{ $movie->title }}</h2>
         <div class="flex gap-5 mt-2">
@@ -21,12 +21,12 @@
             @endfor
             <span class="text-neutral-600">({{ $movie->vote_count }})</span>
         </p>
-        <div class="flex w-1/3 mt-5">
-            <div class="w-1/2 flex flex-col items-center">
+        <div class="flex flex-col md:flex-row w-5/6 md:w-1/3 mt-5 gap-5">
+            <div class="md:w-1/2 flex flex-col items-center">
                 <p class="font-medium">Overview:</p>
                 <p>{{ $movie->overview }}</p>
             </div>
-            <div class="w-1/2 flex flex-col items-center">
+            <div class="md:w-1/2 flex flex-col items-center">
                 <p><span class="font-medium">Release date:</span> {{ $movie->release_date }}</p>
                 @if($movie->budget == 0)
                     <p><span class="font-medium">Budget:</span> Not available</p>

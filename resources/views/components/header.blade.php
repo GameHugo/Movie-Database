@@ -1,4 +1,4 @@
-<header class="w-full flex justify-between p-2 px-96">
+<header class="w-full flex justify-between items-center p-2 flex-col gap-5 lg:flex-row lg:px-64">
     <a href="/" class="font-medium text-2xl">Movie database!</a>
     @livewire('search')
     @if(Auth::check())

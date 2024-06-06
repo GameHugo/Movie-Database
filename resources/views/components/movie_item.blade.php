@@ -1,8 +1,8 @@
-<div class="w-1/6 h-[650px] p-2 gap-2 bg-neutral-200 hover:bg-neutral-300 hover:shadow-lg rounded transition flex flex-col items-center">
+<div class="w-7/8 sm:w-1/3 md:w-1/4 2xl:w-1/5 h-max p-2 gap-2 bg-neutral-200 hover:bg-neutral-300 hover:shadow-lg rounded transition flex flex-col items-center">
     <img src="https://image.tmdb.org/t/p/w500/{{ $movie->poster_path }}"
          alt="{{ $movie->title }} image">
     <h2 class="font-medium text-lg text-center">{{ $movie->title }}</h2>
-    <div class="flex justify-between w-3/4">
+    <div class="flex justify-between gap-5">
         <p>{{ $movie->release_date }}</p>
         <p>
             @for ($i = 0; $i < round($movie->vote_average/2); $i++)
