@@ -54,7 +54,7 @@ class MovieAPIService
         if ($movieID == null) {
             return null;
         }
-        return json_decode($this->getRequest('movie/' . $movieID)->getBody()->getContents());
+        return json_decode($this->client->get('movie/' . $movieID)->getBody()->getContents());
     }
 
     public function responseToArray($response)
