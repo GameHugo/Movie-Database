@@ -4,7 +4,7 @@
     @if(Auth::check())
         <form method="post" action="{{ route('logout') }}">
             @csrf
-            <button type="submit">Logout</button>
+            <button class="text-lg p-2 rounded bg-sky-300 hover:bg-sky-200 transition cursor-pointer" type="submit">Logout</button>
         </form>
     @else
         <div class="flex gap-2">

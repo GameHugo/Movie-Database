@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\MovieAPIServiceProvider;
+
 class PageController extends Controller
 {
+    public MovieAPIServiceProvider $apiController;
+    public function __construct()
+    {
+        $this->apiController = new MovieAPIServiceProvider();
+    }
+
     public function index()
     {
-        $apiController = new MovieAPIController();
         return view('welcome',[
-            'movies' => $apiController->getPopular()
+            'movies' => $this->apiController->getPopular()
         ]);
     }
 
     public function show($movieID)
     {
-        $apiController = new MovieAPIController();
         return view('movie', [
-            'movie' => $apiController->getMovie($movieID)
+            'movie' => $this->apiController->getMovie($movieID)
         ]);
     }
 }
