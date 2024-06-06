@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Home')
+@section('title', $movie->title)
 
 @section('content')
     <div class="flex flex-col items-center mt-16 pb-16">
