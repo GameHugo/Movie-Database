@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Providers\MovieAPIServiceProvider;
+use App\Service\MovieAPIService;
 
 class PageController extends Controller
 {
-    public MovieAPIServiceProvider $apiController;
+    public MovieAPIService $apiController;
     public function __construct()
     {
-        $this->apiController = new MovieAPIServiceProvider();
+        $this->apiController = new MovieAPIService();
     }
 
     public function index()

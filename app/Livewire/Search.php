@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Providers\MovieAPIServiceProvider;
+use App\Service\MovieAPIService;
 use Livewire\Component;
 
 class Search extends Component
@@ -11,7 +11,7 @@ class Search extends Component
 
     public function render()
     {
-        $apiController = new MovieAPIServiceProvider();
+        $apiController = new MovieAPIService();
         return view('livewire.search', [
             'searchMovies' => array_slice($apiController->search($this->search), 0, 10)
         ]);

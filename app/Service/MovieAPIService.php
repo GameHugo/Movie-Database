@@ -1,25 +1,28 @@
 <?php
 
-namespace App\Providers;
+namespace App\Service;
 
-use App\Http\Controllers\Controller;
-use GuzzleHttp\Client;
+use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Facades\Http;
 
-class MovieAPIServiceProvider extends Controller
+class MovieAPIService
 {
     private string $API_TOKEN;
 
-    private Client $client;
+    private PendingRequest $client;
 
     public function __construct()
     {
         $this->API_TOKEN = env('MOVIE_API_TOKEN');
-        $this->client = new Client();
+        $this->client = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $this->API_TOKEN,
+            'accept' => 'application/json',
+        ])->baseUrl("https://api.themoviedb.org/3/");
     }
 
     public function authentication(): bool
     {
-        $response = $this->getRequest('authentication');
+        $response = $this->client->get('authentication');
 
         if ($response->getStatusCode() == 200) {
             return true;
@@ -30,7 +33,7 @@ class MovieAPIServiceProvider extends Controller
 
     public function getPopular()
     {
-        $response = $this->getRequest('movie/popular?language=en-US&page=1');
+        $response = $this->client->get('movie/popular?language=en-US&page=1');
 
         return $this->responseToArray($response);
     }
@@ -41,7 +44,7 @@ class MovieAPIServiceProvider extends Controller
             return [];
         }
 
-        $response = $this->getRequest('search/movie?query=' . $query);
+        $response = $this->client->get('search/movie?query=' . $query);
 
         return $this->responseToArray($response);
     }
@@ -65,15 +68,5 @@ class MovieAPIServiceProvider extends Controller
             $items[] = $movie;
         }
         return $items;
-    }
-
-    public function getRequest($uri)
-    {
-        return $this->client->request('GET', 'https://api.themoviedb.org/3/' . $uri, [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $this->API_TOKEN,
-                'accept' => 'application/json',
-            ],
-        ]);
     }
 }
